@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const { subject, html, email } = await request.json();
 
     // Using SendGrid to send emails
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
     
     const msg = {
       to: 'master.sllc@aol.com',
