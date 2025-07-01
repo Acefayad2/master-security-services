@@ -375,7 +375,16 @@ export default function Home() {
       <section className={styles.videoSection}>
         <h2 className={styles.videoHeading}>Message from the Founder</h2>
         <div className={styles.tvFrame}>
-          <video src="/video.mp4" controls autoPlay loop muted playsInline />
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/RMzD5iTOMgs?autoplay=1&mute=1&loop=1&playlist=RMzD5iTOMgs"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          ></iframe>
         </div>
       </section>
 
