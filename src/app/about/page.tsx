@@ -88,12 +88,12 @@ export default function AboutPage() {
             <div className={styles.circularImageContainer}>
               <img
                 src="/crampton.png"
-                alt="Officer Crampton, C.O.O"
+                alt="Officer Crampton, Licensing Division"
                 className={styles.circularImage}
               />
             </div>
             <h2 className={styles.ceoCaption}>
-              Officer, Crampton C.O.O
+              Officer, Crampton Licensing Division
             </h2>
             <div className={styles.ceoDescription}>
               <ul className={styles.descriptionList}>
