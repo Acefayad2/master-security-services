@@ -50,7 +50,7 @@ export default function AboutPage() {
           <div className={styles.aboutCard}>
             <div className={styles.circularImageContainer}>
               <img
-                src="/powell.png"
+                src="/image.png"
                 alt="Officer Powell, C.E.O"
                 className={styles.circularImage}
               />
