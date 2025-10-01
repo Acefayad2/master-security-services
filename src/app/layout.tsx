@@ -8,9 +8,11 @@ export const metadata: Metadata = {
   title: 'Master Security Services LLC',
   description: 'Safeguarding Success with Superior Solutions',
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: '/apple-icon.png',
   },
 };
 
