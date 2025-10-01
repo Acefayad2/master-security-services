@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 export async function POST(request: NextRequest) {
   try {
-    const { subject, html, email, surveyData } = await request.json();
+    const { html, email } = await request.json();
 
     // Using Resend to send emails
     const apiKey = process.env.RESEND_API_KEY;
