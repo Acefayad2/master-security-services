@@ -732,7 +732,7 @@ export default function Home() {
                 disabled={
           (surveyQuestions[currentQuestion].type === 'radio' && !surveyAnswers[surveyQuestions[currentQuestion].id as keyof typeof surveyAnswers]) ||
           (surveyQuestions[currentQuestion].type === 'text' && surveyQuestions[currentQuestion].id === 'email' && !/\S+@\S+\.\S+/.test((surveyAnswers['email'] as unknown as string) || '')) ||
-          (surveyQuestions[currentQuestion].type === 'text' && surveyQuestions[currentQuestion].id !== 'email' && !surveyAnswers[surveyQuestions[currentQuestion].id as keyof typeof surveyAnswers])
+          (surveyQuestions[currentQuestion].type === 'text' && surveyQuestions[currentQuestion].id !== 'email' && surveyQuestions[currentQuestion].id !== 'phone' && !surveyAnswers[surveyQuestions[currentQuestion].id as keyof typeof surveyAnswers])
                 }
               >
                 {currentQuestion === surveyQuestions.length - 1 ? 'Submit' : 'Next'}
