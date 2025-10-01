@@ -174,6 +174,9 @@ export default function Home() {
     contactInfo: string;
   }) => {
     try {
+      const submitterEmail = /\S+@\S+\.\S+/.test(surveyData.contactInfo)
+        ? surveyData.contactInfo
+        : undefined;
       const response = await fetch('/api/send-survey-email', {
         method: 'POST',
         headers: {
@@ -182,6 +185,7 @@ export default function Home() {
         body: JSON.stringify({
           to: 'acefayad@outlook.com',
           subject: 'New Security Assessment Survey Submission',
+          email: submitterEmail,
           html: `
             <h2>New Security Assessment Survey Submission</h2>
             <p><strong>Business Type:</strong> ${surveyData.businessType}</p>
@@ -244,6 +248,7 @@ export default function Home() {
         body: JSON.stringify({
           to: 'acefayad@outlook.com',
           subject: 'Custom Security Plan Request',
+          email: contactFormData.email,
           html: `
             <h2>New Custom Security Plan Request</h2>
             <p><strong>Name:</strong> ${contactFormData.name}</p>
