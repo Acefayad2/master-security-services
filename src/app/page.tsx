@@ -14,7 +14,8 @@ export default function Home() {
     location: '',
     timeline: '',
     budget: '',
-    contactInfo: ''
+    email: '',
+    phone: ''
   });
   const [contactFormData, setContactFormData] = useState({
     name: '',
@@ -113,10 +114,16 @@ export default function Home() {
       ]
     },
     {
-      id: 'contactInfo',
-      question: 'How can we contact you to discuss your security needs?',
+      id: 'email',
+      question: 'What is your email address? (required)',
       type: 'text',
-      placeholder: 'Enter your phone number or email'
+      placeholder: 'name@example.com'
+    },
+    {
+      id: 'phone',
+      question: 'Phone number (optional)',
+      type: 'text',
+      placeholder: 'Enter your phone number (optional)'
     }
   ];
 
@@ -171,11 +178,12 @@ export default function Home() {
     location: string;
     timeline: string;
     budget: string;
-    contactInfo: string;
+    email: string;
+    phone: string;
   }) => {
     try {
-      const submitterEmail = /\S+@\S+\.\S+/.test(surveyData.contactInfo)
-        ? surveyData.contactInfo
+      const submitterEmail = /\S+@\S+\.\S+/.test(surveyData.email)
+        ? surveyData.email
         : undefined;
       const response = await fetch('/api/send-survey-email', {
         method: 'POST',
@@ -193,7 +201,8 @@ export default function Home() {
             <p><strong>Location:</strong> ${surveyData.location}</p>
             <p><strong>Timeline:</strong> ${surveyData.timeline}</p>
             <p><strong>Budget:</strong> ${surveyData.budget}</p>
-            <p><strong>Contact Info:</strong> ${surveyData.contactInfo}</p>
+            <p><strong>Email:</strong> ${surveyData.email}</p>
+            <p><strong>Phone:</strong> ${surveyData.phone || 'N/A'}</p>
             <p><strong>Submission Date:</strong> ${new Date().toLocaleString()}</p>
           `
         })
@@ -717,12 +726,13 @@ export default function Home() {
               >
                 Previous
               </button>
-              <button 
+      <button 
                 className={`${styles.surveyButton} ${styles.primary}`}
                 onClick={handleNext}
                 disabled={
-                  (surveyQuestions[currentQuestion].type === 'radio' && !surveyAnswers[surveyQuestions[currentQuestion].id as keyof typeof surveyAnswers]) ||
-                  (surveyQuestions[currentQuestion].type === 'text' && !surveyAnswers[surveyQuestions[currentQuestion].id as keyof typeof surveyAnswers])
+          (surveyQuestions[currentQuestion].type === 'radio' && !surveyAnswers[surveyQuestions[currentQuestion].id as keyof typeof surveyAnswers]) ||
+          (surveyQuestions[currentQuestion].type === 'text' && surveyQuestions[currentQuestion].id === 'email' && !/\S+@\S+\.\S+/.test((surveyAnswers['email'] as unknown as string) || '')) ||
+          (surveyQuestions[currentQuestion].type === 'text' && surveyQuestions[currentQuestion].id !== 'email' && !surveyAnswers[surveyQuestions[currentQuestion].id as keyof typeof surveyAnswers])
                 }
               >
                 {currentQuestion === surveyQuestions.length - 1 ? 'Submit' : 'Next'}
